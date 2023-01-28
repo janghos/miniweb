@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="member">
+	<!-- 회원 목록 가져오기 -->
+	<select id="memberList" resultType="dev.jang.mini.VO.MemberVO">
+		select
+			me_name,
+			me_id,
+			me_pw,
+			me_phone,
+			me_email,
+			me_adnum,
+			me_ad,
+			me_addt,
+			regdate
+		from member;
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember">
+		insert into member
+		(
+			me_name,
+			me_id,
+			me_pw,
+			me_phone,
+			me_email,
+			me_adnum,
+			me_ad,
+			me_addt,
+			regdate
+		)
+		values
+		(
+			#{me_name},
+			#{me_id},
+			#{me_pw},
+			#{me_phone},
+			#{me_email},
+			#{me_adnum},
+			#{me_ad},
+			#{me_addt},
+			now()
+		);
+	</insert>
+	<select id="checkId" parameterType="String" resultType="int">
+        select count(*) from member where me_id=#{me_id} and me_delyn = 'N'
+    </select>
+    
+    <select id="checkEmail" parameterType="String" resultType="int">
+        select count(*) from member where me_email=#{me_email} and me_delyn = 'N'
+    </select>
+	
+</mapper>

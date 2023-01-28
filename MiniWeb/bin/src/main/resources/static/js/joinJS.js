@@ -18,7 +18,11 @@ $(function(){
 			$("#userPass").focus();
 			return false;
 		}
-
+		if($("#me_name").val()==""){
+			alert("성명을 입력해주세요.");
+			$("#userName").focus();
+			return false;
+		}
 		
 	});
 	

@@ -1,5 +1,6 @@
 package dev.jang.mini.VO;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -11,7 +12,7 @@ import lombok.Data;
 public class MemberVO {
 	private int me_no;
 	
-	@NotEmpty
+	@NotBlank(message = "이름은 필수 입력 값입니다.")
     @Length(min=2, max=5)
 	private String me_name;
 	
@@ -21,6 +22,8 @@ public class MemberVO {
 	@NotEmpty
 	@Pattern(regexp="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,}")
 	private String me_pw;
+	
+	@NotEmpty
 	private String me_phone;
 	private String me_email;
 	private String me_adnum;

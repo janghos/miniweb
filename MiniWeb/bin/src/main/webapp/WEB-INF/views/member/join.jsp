@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <html>
@@ -25,7 +25,6 @@
 				<label class="control-label" for="me_id">아이디</label> <input
 					class="form-control" type="text" id="me_id" name="me_id" />
 			</div>
-	
 			<input type="button" id="checkId" value="중복검사"><br />
 			<div>
 				<span id="result_checkId" style="font-size: 12px;"></span>
@@ -38,11 +37,11 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="me_name">이름</label> <input
 					class="form-control" type="text" id="me_name" name="me_name" />
-				<p>${valid_me_name}</p>
 			</div>
 			<div class="form-group has-feedback">
-				<label class="control-label" for="user_email">이메일</label> <input
-					type="text" id="user_email" required> <span id="middle">@</span>
+				<label class="control-label" for="user_email">이메일</label> 
+				<input type="text" id="user_email" required>
+				<span id="middle">@</span>
 				<input type="text" id="email_address" list="user_email_address">
 				<datalist id="user_email_address">
 					<option value="naver.com"></option>

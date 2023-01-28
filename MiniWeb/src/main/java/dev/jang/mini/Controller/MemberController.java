@@ -1,17 +1,17 @@
 package dev.jang.mini.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,25 +33,24 @@ public class MemberController {
 		return "member/memberListPage";
 	}
 
-	@RequestMapping("join")
+	@RequestMapping("/join")
 	public String join() {
 		return "/member/join";
 	}
 
-	@PostMapping("/joingo")
-	public String insert(@ModelAttribute @Valid MemberVO vo , BindingResult result) {
+	@RequestMapping(value = "/joingo", method = RequestMethod.POST)
+	public String insert(@ModelAttribute @Valid MemberVO vo, Errors errors, Model model) {
 
-		if(result.hasErrors()) {
-			List<ObjectError> list = result.getAllErrors();
-			for(ObjectError error : list) {
-			System.out.println(error);
+		if (errors.hasErrors()) {
+			model.addAttribute("vo", vo);
+			Map<String, String> validatorResult = memberService.validateHandling(errors);
+			for (String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
 			}
+
 			return "/member/join";
 		}
-		
 		memberService.insertMember(vo);
-		
-		
 		return "redirect:/member/list";
 	}
 
