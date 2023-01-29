@@ -9,10 +9,10 @@
 <title>Insert title ㅇㅇㄴ</title>
 </head>
 <body>
-<h1>하이</h1>
+<h1>회원목록 리스트</h1>
 	<c:forEach items="${list}"  var="member">
-		<p>${member.me_id}</p>
-		<p>${member.me_name}</p>
+		<p>회원 ID : ${member.me_id}</p>
+		<p>회원 이름 : ${member.me_name}</p>
 	</c:forEach>
 </body>
 </html>

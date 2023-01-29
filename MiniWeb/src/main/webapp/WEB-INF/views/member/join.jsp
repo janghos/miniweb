@@ -34,6 +34,7 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="me_pw">패스워드</label> <input
 					class="form-control" type="password" id="me_pw" name="me_pw" />
+				<p>${valid_me_pw}</p>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="me_name">이름</label> <input
@@ -53,6 +54,7 @@
 				</datalist>
 				<input type="hidden" id="me_email" name="me_email" value="">
 				<input type="button" id="checkEmail" value="메일 중복검사"><br />
+				<p>${valid_me_email}</p>
 				<div>
 					<span id="result_checkEmail" style="font-size: 12px;"></span>
 				</div>

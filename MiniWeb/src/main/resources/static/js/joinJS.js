@@ -1,4 +1,5 @@
 $(function(){
+	var chkNum = 0 ;
 	// 취소
 	$(".cencle").on("click", function(){
 		
@@ -10,16 +11,14 @@ $(function(){
 	$("#submit").on("click", function(){
 		if($("#me_id").val()==""){
 			alert("아이디를 입력해주세요.");
-			$("#userId").focus();
+			$("#me_id").focus();
 			return false;
 		}
 		if($("#me_pw").val()==""){
 			alert("비밀번호를 입력해주세요.");
-			$("#userPass").focus();
+			$("#me_pw").focus();
 			return false;
 		}
-
-		
 	});
 	
 	// 아이디 중복 체크
@@ -36,7 +35,7 @@ $(function(){
                 result = "사용 가능한 아이디입니다.";
                 $("#result_checkId").html(result).css("color", "green");
                 $("#me_pw").trigger("focus");
-                $("#submit").attr("disabled", false);
+                chkNum +=1;
                 	let idval = $('#me_id').val()
         			let idvalcheck = /^[a-z0-9]+$/
     				if (!idvalcheck.test(idval) || idval.length<6){
@@ -45,7 +44,7 @@ $(function(){
 	            		result="아이디는 영소문자,숫자로 구성된 6글자 이상으로 조합하시오.";
                      	$("#result_checkId").html(result).css("color","red");
                      	$("#me_id").val("").trigger("focus");
-                     	 $("#submit").attr("disabled", true);
+						
         			}
     			
          	}
@@ -54,7 +53,6 @@ $(function(){
             	 result="이미 사용중인 아이디입니다.";
                  $("#result_checkId").html(result).css("color","red");
                  $("#me_id").val("").trigger("focus");
-                 $("#submit").attr("disabled", false);
          }
              
      },
@@ -96,7 +94,7 @@ $(function(){
                 result = "사용 가능한 이메일입니다.";
                 $("#result_checkEmail").html(result).css("color", "green");
                 $("#me_phone").trigger("focus");
-                $("#submit").attr("disabled", false);    			
+                chkNum += 1;	
          	}
          	else{ // 만약 실패할시
          		 alert("이미 사용중인 이메일입니다.ㅅㄱ");
@@ -104,7 +102,6 @@ $(function(){
                  $("#result_checkEmail").html(result).css("color","red");
                  $("#user_email").val("").trigger("focus");
 				 $("#email_address").val("");
-                 $("#submit").attr("disabled", false);
          }
              
      },
@@ -112,6 +109,12 @@ $(function(){
     });
       
     });
+	if(chkNum = 2) {
+	$("#submit").attr("disabled", false);
+	}
+	else{ 
+		alert("중복 확인 해주세요" );
+	}
 })	
 
 

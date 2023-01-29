@@ -49,7 +49,7 @@ public class MemberController {
 			}
 
 			return "/member/join";
-		}
+		}      
 		memberService.insertMember(vo);
 		return "redirect:/member/list";
 	}
