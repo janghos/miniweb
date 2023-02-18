@@ -28,4 +28,6 @@ public class MemberDAO {
 	public int checkEmail(String email) {
 		return sqlSession.selectOne("member.checkEmail",email);
 	}
+	
+
 }

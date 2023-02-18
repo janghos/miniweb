@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertMember">
 		insert into member
 		(
+			me_no,
 			me_name,
 			me_id,
 			me_pw,
@@ -35,6 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		values
 		(
+			#{me_no},
 			#{me_name},
 			#{me_id},
 			#{me_pw},
@@ -53,5 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="checkEmail" parameterType="String" resultType="int">
         select count(*) from member where me_email=#{me_email} and me_delyn = 'N'
     </select>
+    
+
 	
 </mapper>

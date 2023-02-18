@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	private int me_no;
+	private String me_no;
 	
 	@NotBlank(message = "이름은 필수 입력 값입니다.")
     @Length(min=2, max=5, 

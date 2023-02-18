@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void insertMember(MemberVO vo) {
-		vo.setMe_pw(passwordEncoder.encode(vo.getMe_pw()));
+		vo.setMe_pw(passwordEncoder.encode(vo.getMe_pw()));				
 		memberDao.insertMember(vo);
 		// TODO Auto-generated method stub
 	}
@@ -61,4 +61,5 @@ public class MemberServiceImpl implements MemberService {
 
 		return validatorResult;
 	}
+	
 }

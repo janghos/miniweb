@@ -19,6 +19,14 @@ $(function(){
 			$("#me_pw").focus();
 			return false;
 		}
+
+		if($("#me_email").val()==""){
+			alert("이메일  입력해주세요.");
+			$("#me_email").focus();
+			return false;
+		}
+
+
 	});
 	
 	// 아이디 중복 체크
@@ -84,7 +92,16 @@ $(function(){
 	$("#checkEmail").click(function(){
     
     let me_email = $("#me_email").val();
-     
+    let email_test = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	if(!email_test.test(me_email)){
+		alert("올바른 이메일 형식이 아닙니다. 다시 입력해주세요.")
+		$("#me_email").val("");
+		$("#user_email").val("");
+		$("#email_address").val("");
+		result = "이메일 형식이 올바르지 않습니다..";
+		$("#result_checkEmail").html(result).css("color", "red");
+		return false;
+	}
     $.ajax({
         type:'post', //post 형식으로 controller 에 보내기위함!!
         url:"/member/checkEmail", // 컨트롤러로 가는 mapping 입력

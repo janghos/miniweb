@@ -1,5 +1,6 @@
 package dev.jang.mini.Controller;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,39 @@ public class MemberController {
 
 	@RequestMapping(value = "/joingo", method = RequestMethod.POST)
 	public String insert(@ModelAttribute @Valid MemberVO vo, Errors errors, Model model) {
-
+		List<MemberVO> memberNo;
+		char ch = 'F';
+		String meNo;
+		int i = 0;
+		String zero = null;
+		String formatGap = null;
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH)+1;
+		int date = cal.get(Calendar.DATE);
+		
+		//날짜
+		String today = year +""+"0"+month+""+date;
+		
+		int lastIndex = memberService.memberList().size();
+		//번호 
+			
+		if(lastIndex + 1 < 100000) {
+			ch = 'A';
+			i = lastIndex;
+		}
+		else if(lastIndex + 1 < 200000) {
+			ch = 'B';
+			i = lastIndex - 199999 ;
+		}
+		
+		String setMeno = "CU" + today + ch +  String.format("%05d", i); 
+		vo.setMe_no(setMeno);
+		
+		
+	
+		
 		if (errors.hasErrors()) {
 			model.addAttribute("vo", vo);
 			Map<String, String> validatorResult = memberService.validateHandling(errors);
@@ -49,10 +82,11 @@ public class MemberController {
 			}
 
 			return "/member/join";
-		}      
+		}   
 		memberService.insertMember(vo);
 		return "redirect:/member/list";
 	}
+		
 
 	@RequestMapping("/checkId")
 	@ResponseBody
